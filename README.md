@@ -1,25 +1,25 @@
 # Playwright E2E Dashboard
 
-[![E2E tests](https://github.com/NTCloudy/playwright-e2e-dashboard/actions/workflows/e2e.yml/badge.svg)](https://github.com/NTCloudy/playwright-e2e-dashboard/actions/workflows/e2e.yml)
-[![CI](https://github.com/NTCloudy/playwright-e2e-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/NTCloudy/playwright-e2e-dashboard/actions/workflows/ci.yml)
+[![E2E tests](https://github.com/robinhood126937/playwright-e2e-dashboard/actions/workflows/e2e.yml/badge.svg)](https://github.com/robinhood126937/playwright-e2e-dashboard/actions/workflows/e2e.yml)
+[![CI](https://github.com/robinhood126937/playwright-e2e-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/robinhood126937/playwright-e2e-dashboard/actions/workflows/ci.yml)
 
 English | [繁體中文](README.zh-TW.md)
 
 End-to-end test automation for the [Practice Software Testing](https://practicesoftwaretesting.com) demo e-commerce store, written with **Playwright + TypeScript**.
 On the **public, bilingual dashboard** the owner chooses the target site (`production` or `with-bugs`), picks the test cases, adjusts their test data and starts **N rounds** on GitHub Actions; the progress and every result of every round are shown on the same site.
 
-**Live dashboard: https://ntcloudy.github.io/playwright-e2e-dashboard/**
+**Live dashboard: https://robinhood126937.github.io/playwright-e2e-dashboard/**
 
 > **QA Automation Portfolio Series**:
-> - 🛒 **Project #1 (This Repo — E-Commerce Web Store E2E & 94-Bug Audit)**: [`NTCloudy/playwright-e2e-dashboard`](https://github.com/NTCloudy/playwright-e2e-dashboard) · [Live E-Commerce QA Dashboard](https://ntcloudy.github.io/playwright-e2e-dashboard/)
-> - 🎰 **Project #2 (iGaming / Baccarat Casino Table, Seamless Wallet Concurrency & 100k-Round RTP)**: [`NTCloudy/baccarat-e2e-dashboard`](https://github.com/NTCloudy/baccarat-e2e-dashboard) · [Live Casino QA Dashboard](https://ntcloudy.github.io/baccarat-e2e-dashboard/) · [Live Playable Table](https://ntcloudy.github.io/baccarat-e2e-dashboard/table/)
+> - 🛒 **Project #1 (This Repo — E-Commerce Web Store E2E & 94-Bug Audit)**: [`robinhood126937/playwright-e2e-dashboard`](https://github.com/robinhood126937/playwright-e2e-dashboard) · [Live E-Commerce QA Dashboard](https://robinhood126937.github.io/playwright-e2e-dashboard/)
+> - 🎰 **Project #2 (iGaming / Baccarat Casino Table, Seamless Wallet Concurrency & 100k-Round RTP)**: [`robinhood126937/baccarat-e2e-dashboard`](https://github.com/robinhood126937/baccarat-e2e-dashboard) · [Live Casino QA Dashboard](https://robinhood126937.github.io/baccarat-e2e-dashboard/) · [Live Playable Table](https://robinhood126937.github.io/baccarat-e2e-dashboard/table/)
 
 ![Dashboard](docs/dashboard.png)
 
 ## Highlights
 
 - **20 test cases across 6 modules**: navigation & images, search & price-range filtering, account, cart & quantity limits, checkout, and contact form attachments
-- **Two target releases + Bug detection report (`#/bugs`)**: runs the same suite against both the production store (`practicesoftwaretesting.com`) and the official bug-injected release (`with-bugs.practicesoftwaretesting.com`, 94 seeded bugs); every failure on `with-bugs` is automatically classified against `config/known-bugs.json` (**17 official bugs caught + 1 unlisted finding**, linked to GitHub Issues [#1–#10](https://github.com/NTCloudy/playwright-e2e-dashboard/issues) and evidence screenshots)
+- **Two target releases + Bug detection report (`#/bugs`)**: runs the same suite against both the production store (`practicesoftwaretesting.com`) and the official bug-injected release (`with-bugs.practicesoftwaretesting.com`, 94 seeded bugs); every failure on `with-bugs` is automatically classified against `config/known-bugs.json` (**17 official bugs caught + 1 unlisted finding**, linked to GitHub Issues [#1–#10](https://github.com/robinhood126937/playwright-e2e-dashboard/issues) and evidence screenshots)
 - **Test console on the dashboard**: choose the target site, tick the cases to run, choose 1–10 rounds, change the test data for this run (e.g. the search keyword or the quantity), press **Run** and follow the progress on the same page; the request is checked with the same rules CI uses before anything starts
 - **Editable titles and descriptions**: each case's title and description (繁體中文 / English) can be edited on the dashboard; they live in `config/descriptions.json`, apart from the test code
 - **Page Object Model & soft assertions**: selectors use the site's `data-test` attributes; multi-check cases (`TC17`–`TC20`) use tagged `expect.soft()` checks so a single round reports every bug on the page instead of stopping at the first failure
@@ -56,14 +56,14 @@ On the **public, bilingual dashboard** the owner chooses the target site (`produ
 
 Notes on specific cases:
 - **TC10** uses an address that does not exist: repeating wrong passwords for a real account over many rounds could lock it.
-- **TC19** is configured with `"targets": ["with-bugs"]` in `config/cases.json`: the production store intentionally implements a stricter `0 KB .txt`-only rule instead of US6100, so `TC19` runs against `with-bugs` to verify US6100 (`#68`, `#69`, `#70`). While testing production we also found an unlisted bug where uploading a non-empty non-`.txt` file overwrites the file-type error with `"File should be empty."` ([Issue #10](https://github.com/NTCloudy/playwright-e2e-dashboard/issues/10)).
+- **TC19** is configured with `"targets": ["with-bugs"]` in `config/cases.json`: the production store intentionally implements a stricter `0 KB .txt`-only rule instead of US6100, so `TC19` runs against `with-bugs` to verify US6100 (`#68`, `#69`, `#70`). While testing production we also found an unlisted bug where uploading a non-empty non-`.txt` file overwrites the file-type error with `"File should be empty."` ([Issue #10](https://github.com/robinhood126937/playwright-e2e-dashboard/issues/10)).
 
 ## Bug detection (`#/bugs`)
 
 Running the suite against `with-bugs.practicesoftwaretesting.com` (`TARGET=with-bugs`) tests the tests themselves. `shared/bug-detection.mjs` (used both by the dashboard and by `scripts/verdict.mjs` in CI) matches every failure message against `config/known-bugs.json`:
 
 - **17 in-scope official bugs caught** across `TC02`, `TC07`, `TC09`, `TC11`, `TC13`, `TC15`, `TC17`, `TC18`, `TC19`, and `TC20`
-- **1 unlisted finding caught** on `with-bugs` (`TC06` `search-no-results-message`, [Issue #9](https://github.com/NTCloudy/playwright-e2e-dashboard/issues/9)) + **1 unlisted finding documented on `production`** ([Issue #10](https://github.com/NTCloudy/playwright-e2e-dashboard/issues/10))
+- **1 unlisted finding caught** on `with-bugs` (`TC06` `search-no-results-message`, [Issue #9](https://github.com/robinhood126937/playwright-e2e-dashboard/issues/9)) + **1 unlisted finding documented on `production`** ([Issue #10](https://github.com/robinhood126937/playwright-e2e-dashboard/issues/10))
 - **Precondition blocking**: when `#43` fails in `addToCart()`, downstream cart/checkout cases (`TC12`, `TC14`, `TC16`) are classified as **Blocked by `#43`** rather than unrelated failures
 - **CI Verdict (`scripts/verdict.mjs`)**:
   - On `production`: exits `0` only when every executed case passes and no round broke.

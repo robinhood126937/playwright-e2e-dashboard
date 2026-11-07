@@ -71,7 +71,7 @@ body:
     attributes:
       label: Detected by (case ID + run link)
       description: The test case that caught it and the run on the dashboard. Leave empty if it was found by hand.
-      placeholder: 'TC11 · https://ntcloudy.github.io/playwright-e2e-dashboard/#/run/<run id>'
+      placeholder: 'TC11 · https://robinhood126937.github.io/playwright-e2e-dashboard/#/run/<run id>'
     validations:
       required: false
 

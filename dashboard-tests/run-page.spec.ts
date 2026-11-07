@@ -14,10 +14,10 @@ test.describe('Run page', () => {
     await expect(runPage.meta('測試資料')).toHaveText('預設值');
     await expect(runPage.meta('瀏覽器')).toHaveText('Chromium · Playwright 1.62.1');
     await expect(runPage.meta('測試網站').getByRole('link')).toHaveText('practicesoftwaretesting.com');
-    await expect(runPage.meta('Commit').getByRole('link')).toHaveAttribute('href', 'https://github.com/NTCloudy/playwright-e2e-dashboard/commit/abc1234');
+    await expect(runPage.meta('Commit').getByRole('link')).toHaveAttribute('href', 'https://github.com/robinhood126937/playwright-e2e-dashboard/commit/abc1234');
     await expect(runPage.meta('GitHub Actions').getByRole('link')).toHaveAttribute(
       'href',
-      'https://github.com/NTCloudy/playwright-e2e-dashboard/actions/runs/21000000003',
+      'https://github.com/robinhood126937/playwright-e2e-dashboard/actions/runs/21000000003',
     );
 
     await expect(runPage.score).toHaveText('88.9%');

@@ -28,7 +28,7 @@ test.describe('Test console', () => {
     const { file, line } = catalogCase('TC04');
     await expect(consolePage.caseBody('TC04').getByRole('link', { name: '在 GitHub 查看這條案例的程式碼 ↗' })).toHaveAttribute(
       'href',
-      `https://github.com/NTCloudy/playwright-e2e-dashboard/blob/main/${file}#L${line}`,
+      `https://github.com/robinhood126937/playwright-e2e-dashboard/blob/main/${file}#L${line}`,
     );
 
     await consolePage.expand('TC01');

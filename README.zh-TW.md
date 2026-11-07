@@ -1,25 +1,25 @@
 # Playwright E2E 自動化測試儀表板
 
-[![E2E tests](https://github.com/NTCloudy/playwright-e2e-dashboard/actions/workflows/e2e.yml/badge.svg)](https://github.com/NTCloudy/playwright-e2e-dashboard/actions/workflows/e2e.yml)
-[![CI](https://github.com/NTCloudy/playwright-e2e-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/NTCloudy/playwright-e2e-dashboard/actions/workflows/ci.yml)
+[![E2E tests](https://github.com/robinhood126937/playwright-e2e-dashboard/actions/workflows/e2e.yml/badge.svg)](https://github.com/robinhood126937/playwright-e2e-dashboard/actions/workflows/e2e.yml)
+[![CI](https://github.com/robinhood126937/playwright-e2e-dashboard/actions/workflows/ci.yml/badge.svg)](https://github.com/robinhood126937/playwright-e2e-dashboard/actions/workflows/ci.yml)
 
 [English](README.md) | 繁體中文
 
 用 **Playwright + TypeScript** 對 [Practice Software Testing](https://practicesoftwaretesting.com) 示範電商網站做端對端（E2E）自動化測試。
 在**公開的雙語結果網站**上，擁有者可以選擇測試目標網站（`production` 正式版或 `with-bugs` 植入 Bug 版）、勾選這次要跑哪些測試案例、調整測試資料、**跑 N 輪**；測試在 GitHub Actions 上執行，進度和每一輪、每條案例的結果都直接顯示在同一個網站。
 
-**結果網站：https://ntcloudy.github.io/playwright-e2e-dashboard/**
+**結果網站：https://robinhood126937.github.io/playwright-e2e-dashboard/**
 
 > **QA 自動化測試雙作品集導覽**：
-> - 🛒 **作品集一（本專案 — 電商購物網站端對端 E2E 與 94 項已知問題對照）**：[`NTCloudy/playwright-e2e-dashboard`](https://github.com/NTCloudy/playwright-e2e-dashboard) · [電商測試結果網站](https://ntcloudy.github.io/playwright-e2e-dashboard/)
-> - 🎰 **作品集二（博奕百家樂桌台、單一錢包高併發與 10 萬局蒙地卡羅 RTP 驗證）**：[`NTCloudy/baccarat-e2e-dashboard`](https://github.com/NTCloudy/baccarat-e2e-dashboard) · [皇家賭場 QA 儀表板](https://ntcloudy.github.io/baccarat-e2e-dashboard/) · [被測線上百家樂賭桌](https://ntcloudy.github.io/baccarat-e2e-dashboard/table/)
+> - 🛒 **作品集一（本專案 — 電商購物網站端對端 E2E 與 94 項已知問題對照）**：[`robinhood126937/playwright-e2e-dashboard`](https://github.com/robinhood126937/playwright-e2e-dashboard) · [電商測試結果網站](https://robinhood126937.github.io/playwright-e2e-dashboard/)
+> - 🎰 **作品集二（博奕百家樂桌台、單一錢包高併發與 10 萬局蒙地卡羅 RTP 驗證）**：[`robinhood126937/baccarat-e2e-dashboard`](https://github.com/robinhood126937/baccarat-e2e-dashboard) · [皇家賭場 QA 儀表板](https://robinhood126937.github.io/baccarat-e2e-dashboard/) · [被測線上百家樂賭桌](https://robinhood126937.github.io/baccarat-e2e-dashboard/table/)
 
 ![結果網站](docs/dashboard.zh-TW.png)
 
 ## 特色
 
 - **6 大模組、20 條測試案例**：首頁導覽與圖片文字檢查、搜尋與價格區間篩選、會員、購物車與數量上限、完整結帳、聯絡表單附件驗證
-- **雙目標網站與 Bug 偵測報告（`#/bugs`）**：同一套測試可對正式版（`practicesoftwaretesting.com`）與官方預先埋入 94 個問題的 `with-bugs` 版本（`with-bugs.practicesoftwaretesting.com`）執行；所有 `with-bugs` 的失敗都會自動比對 `config/known-bugs.json`（**抓到 17 個官方 Bug + 1 個額外問題**，並連結到 GitHub Issues [#1–#10](https://github.com/NTCloudy/playwright-e2e-dashboard/issues) 與證據截圖）
+- **雙目標網站與 Bug 偵測報告（`#/bugs`）**：同一套測試可對正式版（`practicesoftwaretesting.com`）與官方預先埋入 94 個問題的 `with-bugs` 版本（`with-bugs.practicesoftwaretesting.com`）執行；所有 `with-bugs` 的失敗都會自動比對 `config/known-bugs.json`（**抓到 17 個官方 Bug + 1 個額外問題**，並連結到 GitHub Issues [#1–#10](https://github.com/robinhood126937/playwright-e2e-dashboard/issues) 與證據截圖）
 - **網站上的測試控制台**：選擇目標網站、勾選要跑的案例、選 1～10 輪、調整這次的測試資料（例如搜尋關鍵字、數量、價格上限），按「執行」後進度就顯示在同一頁；送出前會用和 CI 相同的規則檢查
 - **可以編輯的名稱與描述**：每條案例的名稱與描述（中文／英文）都能在網站上修改，存在 `config/descriptions.json`，和測試程式碼分開
 - **Page Object 架構與軟斷言（Soft Assertions）**：元素定位優先使用 `data-test` 屬性；多檢查點案例（`TC17`～`TC20`）使用帶標籤的 `expect.soft()`，一輪執行就能抓出頁面上所有問題，不會在第一個錯誤就停下
@@ -56,14 +56,14 @@
 
 補充說明：
 - **TC10** 刻意使用不存在的帳號：如果用真實帳號輸錯密碼，跑很多輪可能會把帳號鎖住。
-- **TC19** 在 `config/cases.json` 設定為 `"targets": ["with-bugs"]`：因為正式版網站採用了「只接受 0 KB 的 `.txt` 檔」的另一套規則，並非 US6100 規格，所以 `TC19` 專門對 `with-bugs` 執行以驗證 US6100 的 `#68`、`#69`、`#70`。此外，我們在測試正式版聯絡表單時也額外發現一個前端驗證訊息覆蓋的 Bug：上傳非空白且非 `.txt` 的檔案時，型別錯誤會被後面的檢查覆蓋成 `"File should be empty."`（已紀錄於 [Issue #10](https://github.com/NTCloudy/playwright-e2e-dashboard/issues/10)）。
+- **TC19** 在 `config/cases.json` 設定為 `"targets": ["with-bugs"]`：因為正式版網站採用了「只接受 0 KB 的 `.txt` 檔」的另一套規則，並非 US6100 規格，所以 `TC19` 專門對 `with-bugs` 執行以驗證 US6100 的 `#68`、`#69`、`#70`。此外，我們在測試正式版聯絡表單時也額外發現一個前端驗證訊息覆蓋的 Bug：上傳非空白且非 `.txt` 的檔案時，型別錯誤會被後面的檢查覆蓋成 `"File should be empty."`（已紀錄於 [Issue #10](https://github.com/robinhood126937/playwright-e2e-dashboard/issues/10)）。
 
 ## Bug 偵測報告（`#/bugs`）
 
 把同一套測試拿去跑 `with-bugs.practicesoftwaretesting.com`（`TARGET=with-bugs`），可以用來驗證「測試本身抓不抓得到問題」。`shared/bug-detection.mjs`（由儀表板頁面與 CI 的 `scripts/verdict.mjs` 共用）會把每個失敗訊息自動比對 `config/known-bugs.json`：
 
 - **抓到 17 個涵蓋範圍內的官方 Bug**（分布於 `TC02`、`TC07`、`TC09`、`TC11`、`TC13`、`TC15`、`TC17`、`TC18`、`TC19`、`TC20`）
-- **抓到 1 個 `with-bugs` 上的非官方清單問題**（`TC06` 查無結果未顯示提示，[Issue #9](https://github.com/NTCloudy/playwright-e2e-dashboard/issues/9)）＋ **紀錄 1 個正式版上的非官方清單問題**（[Issue #10](https://github.com/NTCloudy/playwright-e2e-dashboard/issues/10)）
+- **抓到 1 個 `with-bugs` 上的非官方清單問題**（`TC06` 查無結果未顯示提示，[Issue #9](https://github.com/robinhood126937/playwright-e2e-dashboard/issues/9)）＋ **紀錄 1 個正式版上的非官方清單問題**（[Issue #10](https://github.com/robinhood126937/playwright-e2e-dashboard/issues/10)）
 - **前置問題阻擋歸類**：當 `#43`（加入購物車跳出錯誤）發生時，後面需要先加商品進購物車的 `TC12`、`TC14`、`TC16` 會自動歸類為「**被 `#43` 阻擋**」，不會誤判成不明原因失敗
 - **CI 判定規則（`scripts/verdict.mjs`）**：
   - `production`：所有執行的案例都通過、且沒有任何一輪中斷才算通過（綠燈）。
